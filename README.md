@@ -6,6 +6,10 @@
 
 [Elixir初心者向けハンズオン vol2 ](https://beam-lang.connpass.com/event/60655/)
 
+## イベント資料
+
+[wiki](https://github.com/ohr486/elixir_handson_demo2/wiki)
+
 ## 事前準備
 
 [こちら](https://github.com/ohr486/elixir_handson_demo2/wiki/%E4%BA%8B%E5%89%8D%E6%BA%96%E5%82%99)から必要な環境をインストールしてください。
