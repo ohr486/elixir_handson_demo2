@@ -12,7 +12,10 @@ class Demo {
 
     // --- JOIN ---
 
+    // chat:lobbyというトピックのチャネル
     var chan = socket.channel("chat:lobby", {})
+
+    // チャネルに接続(join)
     chan.join()
       .receive("ignore", () => console.log("auth error"))
       .receive("ok", () => console.log("join ok"))
@@ -24,6 +27,7 @@ class Demo {
 
     $input.off("keypress").on("keypress", e => {
       if (e.keyCode == 13) {
+        // new_msgという種類のメッセージ(userとbodyのJSON)をチャネルに送信
         chan.push("new_msg", {user: $user.val(), body: $input.val()})
         $input.val("")
       }
@@ -31,6 +35,7 @@ class Demo {
 
     // --- REPLY ---
 
+    // チャネルからnew_msgという種類のメッセージを受信した時の処理
     chan.on("new_msg", msg => {
       $messages.append(this.messageTemplate(msg))
       scrollTo(0, document.body.scrollHeight)

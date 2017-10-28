@@ -1,5 +1,5 @@
 defmodule DemoWeb.HelloController do
-  use DemoWeb, :controller # コントローラー関連の機能を使うための指定
+  use DemoWeb, :controller # コントローラー関連の機能を使うための宣言
 
   # conn : コネクションを表現する構造体、render関数はconnを受け取ってVIEWを描画する
   # params : URLパラメータなどの情報を持つマップ
