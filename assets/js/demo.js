@@ -6,6 +6,10 @@ class Demo {
     var $input = $("#message-input")
     var $user = $("#user")
 
+    var addMessage = (msg) => {
+      $messages.append(this.messageTemplate(msg))
+    };
+
     socket.onOpen( ev => console.log("OPEN", ev) )
     socket.onError( ev => console.log("ERROR", ev) )
     socket.onClose( ev => console.log("CLOSE", ev))
@@ -18,7 +22,10 @@ class Demo {
     // チャネルに接続(join)
     chan.join()
       .receive("ignore", () => console.log("auth error"))
-      .receive("ok", () => console.log("join ok"))
+      .receive("ok", (messages) => {
+        messages.forEach(addMessage)
+        scrollTo(0, document.body.scrollHeight)
+      })
       .receive("timeout", () => console.log("Connection interruption"))
     chan.onError(e => console.log("something went wrong", e))
     chan.onClose(e => console.log("channel closed", e))
@@ -37,7 +44,7 @@ class Demo {
 
     // チャネルからnew_msgという種類のメッセージを受信した時の処理
     chan.on("new_msg", msg => {
-      $messages.append(this.messageTemplate(msg))
+      addMessage(msg);
       scrollTo(0, document.body.scrollHeight)
     })
   }
