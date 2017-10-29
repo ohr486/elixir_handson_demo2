@@ -10,6 +10,7 @@ defmodule Demo.Application do
     children = [
       # Start the endpoint when the application starts
       supervisor(DemoWeb.Endpoint, []),
+      worker(Agent, [fn -> [] end, [name: Demo.History]]),
       # Start your own worker by calling: Demo.Worker.start_link(arg1, arg2, arg3)
       # worker(Demo.Worker, [arg1, arg2, arg3]),
     ]
